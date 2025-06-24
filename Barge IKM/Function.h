@@ -11,20 +11,18 @@ bool validateOperation(const Barge& barge, int compartmentNum) {
     return (compartmentNum >= 1 && compartmentNum <= barge.numCompartments);
 }
 
-// Функция для безопасного ввода целого числа
+// Функция для безопасного ввода целого числа, то есть проверки
 int safeInputInt(const string& prompt, int minVal, int maxVal) {
     int value;
     while (true) {
         cout << prompt;
         if (!(cin >> value)) {
-            // Очистка потока при некорректном вводе
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Ошибка: введите целое число!" << endl;
             continue;
         }
 
-        // Проверка диапазона
         if (value < minVal || value > maxVal) {
             cout << "Ошибка: значение должно быть от "
                 << minVal << " до " << maxVal << "!" << endl;
@@ -35,11 +33,10 @@ int safeInputInt(const string& prompt, int minVal, int maxVal) {
     return value;
 }
 
-// Функция для безопасного ввода операции (ИСПРАВЛЕНА)
+// Функция для безопасного ввода операции
 void safeInputOperation(char& op, int& compartmentNum, int& fuelType, int maxCompartments) {
     string input;
     while (true) {
-        // Ввод операции
         cin >> input;
         if (input.size() != 1 || (input[0] != '+' && input[0] != '-')) {
             cin.clear();
@@ -83,7 +80,7 @@ void safeInputOperation(char& op, int& compartmentNum, int& fuelType, int maxCom
     }
 }
 
-// Функция для вывода инструкций
+// Функция для вывода инструкций в виде таблички
 void printInstructions() {
     cout << "╔══════════════════════════════════════════════════════════╗" << endl;
     cout << "║              МОДЕЛИРОВАНИЕ РАБОТЫ БАРЖИ                  ║" << endl;
